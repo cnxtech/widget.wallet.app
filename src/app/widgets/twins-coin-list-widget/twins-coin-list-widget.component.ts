@@ -1,5 +1,6 @@
 import {Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import { environment } from './../../../environments/environment';
 
 @Component({
     selector: 'twins-coin-list-widget',
@@ -66,9 +67,9 @@ export class TwinsCoinListWidgetComponent implements OnInit, OnChanges {
         this._apiUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=' + this.currency + '&ids=' + this.coinIds + '&locale=' + this.locale;
     }
     ngOnInit() {
-        // if(parseInt(this.width) > 0 && parseInt(this.width) < 300) {
-        //     this.width = (300).toString();
-        // }
+        if(this.width > 0 && this.width < 300) {
+            this.width = 300;
+        }
         this.getData();
     }
 
@@ -82,7 +83,12 @@ export class TwinsCoinListWidgetComponent implements OnInit, OnChanges {
     getData() {
         if (this.coinIds.length) {
             this.updateApiUrl();
-            this._http.get(this._apiUrl).subscribe(
+            const data = {
+                currency: this.currency,
+                coinIds: this.coinIds,
+                locale: this.locale
+            }
+            this._http.post(environment.apiOrigin + '/api/get-market-data', data).subscribe(
                 (data: any) => {
                     // this._data = data;
                     this._currencyOptions = data.map(item => item.symbol);
