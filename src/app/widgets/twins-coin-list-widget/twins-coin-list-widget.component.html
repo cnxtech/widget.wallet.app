@@ -1,0 +1,73 @@
+<div class="cg-container large" style="width: 100%; background-color: rgb(255, 255, 255); color: rgb(76, 76, 76);" [ngStyle]="width > 0 && {'width': width + 'px'}">
+  <div class="cg-p-3 cg-base" *ngIf="!coinIds.length || !_showCoins.length">Loading widget...</div>
+  <div class="cg-widget cg-flex-column" *ngIf="coinIds.length && _showCoins.length">
+    <a *ngFor="let coin of _showCoins" [href]="'https://www.coingecko.com/resource_redirect?locale=' + locale.toLowerCase() + '&amp;route=coins/' + coin.id + '&amp;utm_source=www.coingecko.com&amp;utm_medium=coin_list_widget&amp;utm_content=bitcoin'" target="_blank" class="cg-p-3 cg-flex cg-justify-between cg-coin-row cg-even-row" style="color: rgb(76, 76, 76);">
+      <div class="cg-flex cg-items-center">
+        <img src="{{coin.image}}" class="cg-mr-2" />
+        <div class="cg-sm-hide"></div>
+        <div class="cg-sm-hide">
+          <span class="cg-bold">{{coin.name}}</span> ({{coin.symbol.toUpperCase()}})
+        </div>
+        <div class="cg-lg-hide">
+          <span class="cg-bold">{{coin.symbol.toUpperCase()}}</span>
+        </div>
+      </div>
+      <div class="cg-flex cg-justify-end cg-items-center cg-red-color-dark">
+        <div>
+          <span class="cg-bold cg-px-1">
+              ${{fixCurrentPrice(coin.current_price)}}
+            </span>
+          <span>({{coin.price_change_percentage_24h.toFixed(2)}}%)</span>
+        </div>
+        <div class="cg-ml-2 cg-sm-hide cg-arrow-down"></div>
+      </div>
+    </a>
+    <div class="cg-flex cg-justify-between cg-items-center cg-footer cg-px-2 cg-py-1">
+      <select name="currency" [(ngModel)]="currency" (ngModelChange)="getData()">
+        <option value="btc">BTC</option>
+        <option value="eth">ETH</option>
+        <option value="usd">USD</option>
+        <option value="aed">AED</option>
+        <option value="ars">ARS</option>
+        <option value="aud">AUD</option>
+        <option value="brl">BRL</option>
+        <option value="cad">CAD</option>
+        <option value="chf">CHF</option>
+        <option value="clp">CLP</option>
+        <option value="cny">CNY</option>
+        <option value="czk">CZK</option>
+        <option value="dkk">DKK</option>
+        <option value="eur">EUR</option>
+        <option value="gbp">GBP</option>
+        <option value="hkd">HKD</option>
+        <option value="huf">HUF</option>
+        <option value="idr">IDR</option>
+        <option value="ils">ILS</option>
+        <option value="inr">INR</option>
+        <option value="jpy">JPY</option>
+        <option value="krw">KRW</option>
+        <option value="kwd">KWD</option>
+        <option value="lkr">LKR</option>
+        <option value="mxn">MXN</option>
+        <option value="myr">MYR</option>
+        <option value="nok">NOK</option>
+        <option value="nzd">NZD</option>
+        <option value="php">PHP</option>
+        <option value="pkr">PKR</option>
+        <option value="pln">PLN</option>
+        <option value="rub">RUB</option>
+        <option value="sar">SAR</option>
+        <option value="sek">SEK</option>
+        <option value="sgd">SGD</option>
+        <option value="thb">THB</option>
+        <option value="try">TRY</option>
+        <option value="twd">TWD</option>
+        <option value="zar">ZAR</option>
+      </select>
+      <!--<select name="currency" [(ngModel)]="currency">-->
+      <!--<option *ngFor="let option of _currencyOptions" [value]="option.toUpperCase()">{{option.toUpperCase()}}</option>-->
+      <!--</select>-->
+      <div class="cg-bold">{{getPowerBy()}} <a class="cg-primary-color-dark cg-no-underline" [href]="'https://www.coingecko.com/' + locale.toLowerCase() + '?utm_source=www.coingecko.com&amp;utm_medium=coin_list_widget&amp;utm_content=bitcoin'" target="_blank">CoinGecko</a></div>
+    </div>
+  </div>
+</div>
