@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiOrigin: 'http://localhost:3000'
+    apiOrigin: 'http://104.248.28.171:3000'
 };
 
 /*
