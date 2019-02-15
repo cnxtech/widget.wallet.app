@@ -1,0 +1,60 @@
+<div class="widget-container large" style="width: 100%; background-color: rgb(255, 255, 255);">
+  <div class="widget-widget">
+    <div class="widget-marquee">
+      <span class="widget-marquee-content-1" *ngFor="let coin of _showCoins">
+        <div class="widget-flex widget-flex-row">
+          <!--<a href="https://www.coingecko.com/resource_redirect?locale=en&amp;route=coins/bitcoin&amp;utm_source=www.coingecko.com&amp;utm_medium=coin_price_marquee_widget&amp;utm_content=bitcoin" target="_blank" class="widget-py-2 widget-px-3 widget-flex widget-coin-row widget-sm">-->
+          <a class="widget-py-2 widget-px-3 widget-flex widget-coin-row widget-sm">
+            <div class="widget-flex widget-items-center">
+              <img src="{{coin.image}}" class="widget-mr-2">
+              <span>
+                <span class="widget-bold">{{coin.name}}</span> ({{coin.symbol.toUpperCase()}})
+              </span>
+            </div>
+            <div class="widget-ml-2 widget-flex widget-justify-end widget-items-center widget-red-color-dark">
+              <div>
+                <span class="widget-bold">
+                  ${{fixCurrentPrice(coin.current_price)}}
+                </span>
+                <span>({{coin.price_change_percentage_24h.toFixed(2)}}%)</span>
+              </div>
+              <div class="widget-ml-2 widget-arrow-down"></div>
+            </div>
+          </a>
+          <div class="widget-flex widget-items-center">
+            <!--<a class="widget-bold widget-sm widget-px-3">Powered by <a class="widget-primary-color-dark widget-no-underline" href="https://www.coingecko.com/en?utm_source=www.coingecko.com&amp;utm_medium=coin_price_marquee_widget&amp;utm_content=bitcoin" target="_blank">CoinGecko</a></a>-->
+            <a class="widget-bold widget-sm widget-px-3">Powered by <a class="widget-primary-color-dark widget-no-underline" href="https://win.win" target="_blank">win.win</a></a>
+          </div>
+        </div>
+      </span>
+      <span *ngIf="_showCoins.length == 1">
+        <span class="widget-marquee-content-1" *ngFor="let coin of _showCoins">
+          <div class="widget-flex widget-flex-row">
+            <!--<a href="https://www.coingecko.com/resource_redirect?locale=en&amp;route=coins/bitcoin&amp;utm_source=www.coingecko.com&amp;utm_medium=coin_price_marquee_widget&amp;utm_content=bitcoin" target="_blank" class="widget-py-2 widget-px-3 widget-flex widget-coin-row widget-sm">-->
+            <a class="widget-py-2 widget-px-3 widget-flex widget-coin-row widget-sm">
+              <div class="widget-flex widget-items-center">
+                <img src="{{coin.image}}" class="widget-mr-2">
+                <span>
+                  <span class="widget-bold">{{coin.name}}</span> ({{coin.symbol.toUpperCase()}})
+                </span>
+              </div>
+              <div class="widget-ml-2 widget-flex widget-justify-end widget-items-center widget-red-color-dark">
+                <div>
+                  <span class="widget-bold">
+                    ${{fixCurrentPrice(coin.current_price)}}
+                  </span>
+                  <span>({{coin.price_change_percentage_24h.toFixed(2)}}%)</span>
+                </div>
+                <div class="widget-ml-2 widget-arrow-down"></div>
+              </div>
+            </a>
+            <div class="widget-flex widget-items-center">
+              <!--<a class="widget-bold widget-sm widget-px-3">Powered by <a class="widget-primary-color-dark widget-no-underline" href="https://www.coingecko.com/en?utm_source=www.coingecko.com&amp;utm_medium=coin_price_marquee_widget&amp;utm_content=bitcoin" target="_blank">CoinGecko</a></a>-->
+              <a class="widget-bold widget-sm widget-px-3">Powered by <a class="widget-primary-color-dark widget-no-underline" href="https://win.win" target="_blank">win.win</a></a>
+            </div>
+          </div>
+        </span>
+      </span>
+    </div>
+  </div>
+</div>

@@ -1,9 +1,19 @@
 var concat = require('concat-files');
-concat([
-    './dist/runtime.js',
-    './dist/polyfills.js',
-    './dist/main.js'
-], './dist/widget.js', function(err) {
+var del = require('del');
+var folder = process.argv[2];
+// console.log(process.argv)
+var files = [
+    './' + folder + '/runtime.js',
+    './' + folder + '/polyfills.js',
+    './' + folder + '/main.js'
+];
+var fileName = 'widget.js';
+concat(files, './' + folder + '/' + fileName, function(err) {
     if (err) throw err
-    console.log('done');
+    del(files).then(function() {
+        console.log('done');
+    });
+    del('./' + folder + '/' + folder + '.html').then(function() {
+        console.log('done');
+    });
 });
